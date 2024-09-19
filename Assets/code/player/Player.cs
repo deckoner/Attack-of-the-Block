@@ -23,5 +23,13 @@ public class NewBehaviourScript : MonoBehaviour
 
         // Actualizar la posición del objeto usando Rigidbody
         rb.MovePosition(posicionRaton);
+
+    }
+
+    void OnCollisionEnter2D(Collision2D colision)
+    {
+        // Cerramos el juego ya que el jugador a muerto y añado un debug para poder comprobarlo en el editor
+        Application.Quit();
+        Debug.Log("Me mori");
     }
 }
