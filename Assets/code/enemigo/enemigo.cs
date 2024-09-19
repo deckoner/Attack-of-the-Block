@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemigoRebote : MonoBehaviour
 {
     // Velocidad del enemigo
-    public float velocidad = 5f;
+    [SerializeField] private float velocidad = 5f;
     private Rigidbody2D rb;
     private Vector2 direccionMovimiento;
 
@@ -13,7 +13,7 @@ public class EnemigoRebote : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // Inicializar con una dirección de movimiento aleatoria
+        // Inicializar con una dirección aleatoria
         direccionMovimiento = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
     }
 
@@ -23,10 +23,9 @@ public class EnemigoRebote : MonoBehaviour
         rb.MovePosition(rb.position + direccionMovimiento * velocidad * Time.fixedDeltaTime);
     }
 
-    // Método llamado automáticamente cuando hay una colisión
     void OnCollisionEnter2D(Collision2D colision)
     {
-        // Rebote básico: invertir la dirección del movimiento cuando colisiona con algo
+        // invertir la dirección del movimiento cuando colisiona con algo
         direccionMovimiento = Vector2.Reflect(direccionMovimiento, colision.contacts[0].normal);
     }
 }

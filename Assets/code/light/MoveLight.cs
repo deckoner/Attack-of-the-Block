@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveLight : MonoBehaviour
 {
-    // Radio del círculo
+    // Radio del círculo de actuacion
     [SerializeField] private float radio = 5f;
     // Velocidad de movimiento
     [SerializeField] private float velocidadMovimiento = 1f;
@@ -13,7 +13,7 @@ public class MoveLight : MonoBehaviour
 
     void Start()
     {
-        // Guardar la posición inicial del objeto (en 2D)
+        // Guardar la posición inicial del objeto
         posicionInicial = transform.position;
 
         // Generar una posición aleatoria inicial dentro del círculo
