@@ -10,6 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Cursor.visible=false;
     }
 
     // Update is called once per frame
@@ -28,8 +29,12 @@ public class NewBehaviourScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D colision)
     {
-        // Cerramos el juego ya que el jugador a muerto y añado un debug para poder comprobarlo en el editor
-        Application.Quit();
-        Debug.Log("Me mori");
+        // Comprobar si ha chocado con un enemigo
+        if (colision.gameObject.CompareTag("Enemigo"))
+        {
+            // Cerramos el juego ya que el jugador ha muerto
+            Application.Quit();
+            Debug.Log("Me morí al chocar con un enemigo");
+        }
     }
 }
