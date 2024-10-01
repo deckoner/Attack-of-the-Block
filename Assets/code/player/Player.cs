@@ -24,7 +24,6 @@ public class NewBehaviourScript : MonoBehaviour
 
         // Actualizar la posición del objeto usando Rigidbody
         rb.MovePosition(posicionRaton);
-
     }
 
     void OnCollisionEnter2D(Collision2D colision)
