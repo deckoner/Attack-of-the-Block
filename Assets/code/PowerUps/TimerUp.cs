@@ -11,11 +11,9 @@ public class TimerUp : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D colision)
     {
-        Debug.Log("Golpeo");
         // Comprobar si ha chocado con el jugador
         if (colision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Golpeo 2");
             // Activar el temporizador
             activo = true;
 

@@ -2,18 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
     private bool esInvulnerable = false;
     [SerializeField] private int vidas = 3;
     [SerializeField] private float tiempoInvulnerable = 1.0f;
+
+    // Referencias a las imágenes de las vidas
+    [SerializeField] private Image vidaUno;
+    [SerializeField] private Image vidaDos;
+    [SerializeField] private Image vidaTres;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         Cursor.visible=false;
     }
 
@@ -46,18 +54,38 @@ public class NewBehaviourScript : MonoBehaviour
                 vidas--;
                 Debug.Log("Auch pierdo una vida");
                 StartCoroutine(ActivarInvulnerabilidad());
+                ActualizarVidaVisual(vidas);
             }
         }
     }
 
     private IEnumerator ActivarInvulnerabilidad()
     {
+        // Cambiamos el sprit a rojo para que se note que esta dañado
+        spriteRenderer.color = Color.red;
         esInvulnerable = true;
-        // Aquí podrías agregar un efecto visual para indicar invulnerabilidad
 
         yield return new WaitForSeconds(tiempoInvulnerable);
 
+        // Le devolvemos el color normal al sprit
+        spriteRenderer.color = Color.white;
         esInvulnerable = false;
-        // Aquí podrías quitar el efecto visual
+    }
+
+    private void ActualizarVidaVisual(int vidasRestantes)
+    {
+        // Ocultar la vida correspondiente según el número de vidas restantes
+        if (vidasRestantes == 2)
+        {
+            vidaTres.enabled = false;
+        }
+        else if (vidasRestantes == 1)
+        {
+            vidaDos.enabled = false;
+        }
+        else if (vidasRestantes == 0)
+        {
+            vidaUno.enabled = false;
+        }
     }
 }

@@ -1151,7 +1151,7 @@ GameObject:
   - component: {fileID: 854759204}
   - component: {fileID: 854759203}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Vida Dos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1854,7 +1854,7 @@ GameObject:
   - component: {fileID: 1306802275}
   - component: {fileID: 1306802274}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Vida Uno
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1931,7 +1931,7 @@ GameObject:
   - component: {fileID: 1601104293}
   - component: {fileID: 1601104297}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1997,7 +1997,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1028879577
+  m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1601104296
@@ -2048,7 +2048,7 @@ GameObject:
   - component: {fileID: 1604574991}
   - component: {fileID: 1604574990}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Vida Tres
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3294,11 +3294,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 417101534294923249, guid: 732f6641c3212e34c9ad00d5a145198f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.23
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 417101534294923249, guid: 732f6641c3212e34c9ad00d5a145198f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.28
+      value: -2.53
       objectReference: {fileID: 0}
     - target: {fileID: 417101534294923249, guid: 732f6641c3212e34c9ad00d5a145198f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3364,6 +3364,18 @@ PrefabInstance:
       propertyPath: tiempo
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4218385079060083165, guid: 732f6641c3212e34c9ad00d5a145198f, type: 3}
+      propertyPath: vidaDos
+      value: 
+      objectReference: {fileID: 854759203}
+    - target: {fileID: 4218385079060083165, guid: 732f6641c3212e34c9ad00d5a145198f, type: 3}
+      propertyPath: vidaUno
+      value: 
+      objectReference: {fileID: 1306802274}
+    - target: {fileID: 4218385079060083165, guid: 732f6641c3212e34c9ad00d5a145198f, type: 3}
+      propertyPath: vidaTres
+      value: 
+      objectReference: {fileID: 1604574990}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
