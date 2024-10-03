@@ -9,25 +9,13 @@ public class TimerUp : MonoBehaviour
     [SerializeField] float tiempoActivo = 1f;
     [SerializeField] private AudioSource musica;
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Si el temporizador está activo, contamos el tiempo
-        if (activo)
-        {
-            tiempoActivo -= Time.unscaledDeltaTime;
-            if (tiempoActivo <= 0)
-            {
-                ResetEffects();
-            }
-        }
-    }
-
     void OnCollisionEnter2D(Collision2D colision)
     {
+        Debug.Log("Golpeo");
         // Comprobar si ha chocado con el jugador
         if (colision.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Golpeo 2");
             // Activar el temporizador
             activo = true;
 
@@ -36,6 +24,8 @@ public class TimerUp : MonoBehaviour
 
             // Bajamos el pitch de la música un 0,05 para el efecto de relentización
             musica.pitch = 0.95f;
+
+            Invoke(nameof(ResetEffects), tiempoActivo * Time.timeScale);
         }
     }
 

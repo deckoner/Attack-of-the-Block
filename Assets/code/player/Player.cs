@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private bool esInvulnerable = false;
+    [SerializeField] private int vidas = 3;
+    [SerializeField] private float tiempoInvulnerable = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +32,32 @@ public class NewBehaviourScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D colision)
     {
-        // Comprobar si ha chocado con un enemigo
-        if (colision.gameObject.CompareTag("Enemigo"))
+        // Comprobar si ha chocado con un enemigo y no está en estado de invulnerabilidad
+        if (colision.gameObject.CompareTag("Enemigo") && !esInvulnerable)
         {
-            // Cerramos el juego ya que el jugador ha muerto
-            Application.Quit();
-            Debug.Log("Me morí al chocar con un enemigo");
+            if (vidas <= 0) 
+            {
+                // Cerramos el juego ya que el jugador ha muerto
+                Application.Quit();
+                Debug.Log("Me morí al chocar con un enemigo");
+            } 
+            else 
+            {
+                vidas--;
+                Debug.Log("Auch pierdo una vida");
+                StartCoroutine(ActivarInvulnerabilidad());
+            }
         }
+    }
+
+    private IEnumerator ActivarInvulnerabilidad()
+    {
+        esInvulnerable = true;
+        // Aquí podrías agregar un efecto visual para indicar invulnerabilidad
+
+        yield return new WaitForSeconds(tiempoInvulnerable);
+
+        esInvulnerable = false;
+        // Aquí podrías quitar el efecto visual
     }
 }
