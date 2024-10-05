@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +7,8 @@ public class TimerUp : MonoBehaviour
     private bool activo;
     [SerializeField] float tiempoActivo = 1f;
     [SerializeField] private AudioSource musica;
+    [SerializeField] private Vector2 fueraDeEscena;
+    [SerializeField] private PowerupManager powerupManager;
 
     void OnCollisionEnter2D(Collision2D colision)
     {
@@ -24,6 +25,9 @@ public class TimerUp : MonoBehaviour
             musica.pitch = 0.95f;
 
             Invoke(nameof(ResetEffects), tiempoActivo * Time.timeScale);
+
+            // Desactivar y mover el powerup fuera de la escena
+            powerupManager.DesactivarPowerup(this.gameObject, fueraDeEscena);
         }
     }
 
