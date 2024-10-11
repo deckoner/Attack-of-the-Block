@@ -8,6 +8,8 @@ public class NewBehaviourScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+
+    // Invulnerabilidad
     private bool esInvulnerable = false;
     [SerializeField] private int vidas = 3;
     [SerializeField] private float tiempoInvulnerable = 1.0f;
@@ -16,6 +18,9 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private Image vidaUno;
     [SerializeField] private Image vidaDos;
     [SerializeField] private Image vidaTres;
+
+    [SerializeField] private ScenesManager scenesManager;
+    [SerializeField] private PuntuacionManager puntuacionManager;
 
     // Start is called before the first frame update
     void Start()
@@ -43,16 +48,16 @@ public class NewBehaviourScript : MonoBehaviour
         // Comprobar si ha chocado con un enemigo y no está en estado de invulnerabilidad
         if (colision.gameObject.CompareTag("Enemigo") && !esInvulnerable)
         {
+            vidas--;
+
             if (vidas <= 0) 
             {
-                // Cerramos el juego ya que el jugador ha muerto
-                Application.Quit();
-                Debug.Log("Me morí al chocar con un enemigo");
+                // Guardamos la puntuacion y ponemos la pantalla de gameover
+                puntuacionManager.GuardarPuntuacion();
+                scenesManager.cargarGameOver();
             } 
             else 
             {
-                vidas--;
-                Debug.Log("Auch pierdo una vida");
                 StartCoroutine(ActivarInvulnerabilidad());
                 ActualizarVidaVisual(vidas);
             }
