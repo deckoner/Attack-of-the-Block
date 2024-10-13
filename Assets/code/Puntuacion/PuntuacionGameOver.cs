@@ -13,12 +13,18 @@ public class PuntuacionGameOver : MonoBehaviour
 
     void Awake()
     {
+        // Recuperamos nombre y puntuacion de los PlayerPrefs
         puntuacion = PlayerPrefs.GetFloat("Puntuacion");
         nombre = PlayerPrefs.GetString("Nombre");
+
+        // Guardar la puntuación
+        DatosPuntuacion datos = new DatosPuntuacion(puntuacion, nombre);
+        ManagerJSON.GuardarPuntuacion(datos);
     }
 
     void Start()
     {
+        //Formateamos la puntuacion para que aparezca como tiempo
         int minutos = Mathf.FloorToInt(puntuacion / 60);
         int segundos = Mathf.FloorToInt(puntuacion % 60);
 
