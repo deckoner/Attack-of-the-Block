@@ -38,10 +38,10 @@ public static class ManagerJSON
 
     public static DatosPuntuacion[] CargarPuntuaciones()
     {
-        // Comprobamos si existe ya un archivo de puntuacion
+        // Comprobamos si existe ya un archivo de puntuación
         if (File.Exists(rutaArchivo))
         {
-            // usamos el wrapper para leer las puntuaciones
+            // Leer y deserializar las puntuaciones usando el wrapper
             string json = File.ReadAllText(rutaArchivo);
             Wrapper<DatosPuntuacion> wrapper = JsonUtility.FromJson<Wrapper<DatosPuntuacion>>(json);
             return wrapper.items;
@@ -56,11 +56,10 @@ public static class ManagerJSON
                 new DatosPuntuacion(100, "El tipo gitano de barrio estereotípico, payo")
             };
 
-            // Usar el nuevo método GuardarPuntuacion para guardar datos por defecto
-            foreach (var puntuacion in datosPorDefecto)
-            {
-                GuardarPuntuacion(puntuacion);
-            }
+            // Guardar los datos predeterminados directamente sin llamar a GuardarPuntuacion
+            Wrapper<DatosPuntuacion> wrapper = new Wrapper<DatosPuntuacion> { items = datosPorDefecto };
+            string json = JsonUtility.ToJson(wrapper, true);
+            File.WriteAllText(rutaArchivo, json);
 
             return datosPorDefecto;
         }

@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class enemigoControler : MonoBehaviour
 {
     // Velocidad del enemigo
     public float velocidad = 10f;
+    public float multiVelocidadLineal = 0.02f;
+    public float multiVelocidadExponencial = 0.02f;
     private Rigidbody2D rb;
     private Vector2 direccionMovimiento;
     private AudioSource reboteSound;
@@ -21,6 +25,12 @@ public class enemigoControler : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Dificultad de velocidad lineal
+        velocidad = velocidad + velocidad * multiVelocidadExponencial;
+
+        // Dificultad de velocidad lineal
+        // velocidad = velocidad + multiVelocidadLineal;
+
         // Mover el enemigo en la dirección actual
         rb.MovePosition(rb.position + direccionMovimiento * velocidad * Time.fixedDeltaTime);
     }
