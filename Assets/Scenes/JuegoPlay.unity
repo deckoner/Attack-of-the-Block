@@ -534,7 +534,7 @@ MonoBehaviour:
   enemigos:
   - {fileID: 884765361}
   - {fileID: 345171730}
-  distanciaDeteccion: 5
+  distanciaDeteccion: 20
   distanciaSegura: 10
 --- !u!95 &473426141
 Animator:
