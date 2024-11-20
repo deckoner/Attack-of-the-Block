@@ -24,7 +24,7 @@ public class PlayerNPC : MonoBehaviour
     // Array de enemigos
     public Transform[] enemigos;
     // Distancia para detectar enemigos
-    public float distanciaDeteccion = 5f;
+    public float distanciaDeteccion = 20f;
     // Distancia para estar seguro
     public float distanciaSegura = 10f;
     // Referencia al Animator del NPC
@@ -104,21 +104,17 @@ public class PlayerNPC : MonoBehaviour
             
             if (distancia < distanciaDeteccion)
             {
-                // Un enemigo está dentro de la distancia de detección
                 enemigoCerca = true;
-                Debug.Log("Aiudaaaaaaaaaaaaaa");
             }
             
             if (distancia < distanciaSegura)
             {
-                // Hay un enemigo demasiado cerca, no está seguro
                 estaSeguro = false;
-                Debug.Log("Estoy seguro");
             }
         }
 
-        // Actualiza los parámetros en el Animator
         animator.SetBool("enemigoCerca", enemigoCerca);
         animator.SetBool("distanciaSegura", estaSeguro);
     }
+
 }
